@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Outliers{% endblock %}
+
+{% block heading %}<i>To-do</i>{% endblock %}
+
+{% block main %}
+<ul>
+    {% for outlier in outliers %}
+    <li>{{ outlier.root_w }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

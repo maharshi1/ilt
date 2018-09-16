@@ -1,0 +1,8 @@
+tags
+*.pyc
+*.swp
+*.swap
+.vimrc
+.vim
+env
+
