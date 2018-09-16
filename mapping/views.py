@@ -11,7 +11,6 @@ def add_map(request):
     template_values = {'form': form}
 
     if request.method == 'POST':
-        form = AddMap(request.POST)
         if form.is_valid():
             res, msg = form.save()
             template_values['msg'] = msg
@@ -20,7 +19,7 @@ def add_map(request):
 
     return render(request, 'addmap.html', template_values)
 
-def add_word(request):
+def add_word(request, rw=None):
     form = AddWord(request.POST or None)
     template_values = {'form': form}
 
@@ -37,3 +36,15 @@ def add_word(request):
 def list_outlier(request):
     outliers = LanguagesMapping.objects.filter(mapping=None)
     return render(request, 'list_outlier.html', {'outliers': outliers})
+
+def view_actions(request):
+    tv = {'languages': LanguagesMapping.REV_LANGUAGE_TYPE.keys()}
+    return render(request, 'view_actions.html', tv)
+
+def map_lang(request, language):
+    langcode = LanguagesMapping.REV_LANGUAGE_TYPE.get(language)
+    if langcode:
+        nmw = LanguagesMapping.objects.exclude(
+            lang_type=langcode
+        ).exclude(mapping__lang_type=langcode)
+    return render(request, 'list_outlier.html', {'outliers': nmw})

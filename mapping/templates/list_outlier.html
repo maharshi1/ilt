@@ -1,13 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Outliers{% endblock %}
+{% block title %}Todo{% endblock %}
 
 {% block heading %}<i>To-do</i>{% endblock %}
 
 {% block main %}
+<style>
+    .atag {
+        background: none;
+        border: none;
+        border-bottom:1px solid #444;
+        cursor: pointer;
+        color: darkviolet;
+        font-size: larger;
+    }
+</style>
 <ul>
     {% for outlier in outliers %}
-    <li>{{ outlier.root_w }}</li>
+    <li>
+        <form action="/lang/add-map" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="root_w1" value="{{ outlier.root_w }}"/>
+            <input type="hidden" name="w1_type" value="{{ outlier.lang_type }}"/>
+            <input class="atag" type="submit" value="{{ outlier.root_w }}">
+                --- {{ outlier.get_lang_type_display }}
+            </input>
+        </form>
+    </li>
     {% endfor %}
 </ul>
 {% endblock %}

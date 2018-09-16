@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}ILT{% endblock %}
+
+{% block heading %}Welcome, happy translating{% endblock %}
+
+{% block main %}
+<ul>
+    <li><a href="/lang/add-word">Add word</a></li>
+    <li><a href="/lang/add-map">Add & map words</a></li>
+    <li><a href="/lang/list-outlier">Translate outliters</a></li>
+    <h4><i>Translate for existing words :-</i></h4>
+    {% for language in languages %}
+    <li>
+        <a href="/lang/{{ language }}/map">
+            {{ language.upper }}
+        </a>
+    </li>
+    {% endfor %}
+{% endblock %}

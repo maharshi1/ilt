@@ -21,6 +21,14 @@ class LanguagesMapping(models.Model):
         (LT_KONKANI, 'Konkani'),
     )
 
+    REV_LANGUAGE_TYPE = {
+        'hindi': LT_HINDI,
+        'marathi': LT_MARATHI,
+        'telugu': LT_TELUGU,
+        'malyalam': LT_MALYALAM,
+        'konkani': LT_KONKANI
+    }
+
     lang_type = models.PositiveSmallIntegerField(
         choices=LANGUAGE_TYPE, blank=False, null=False, db_index=True
     )
